@@ -1,6 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+using System;
 using System.IO;
 
+//I added 2 things to be stored in the entries. When you write an entry it also asks for your 
+//name and stores it. After you write your entry, there is another prompt at the end "I am grateful
+//for". It also stores what you are grateful for.
 class Program
 {
     static void Main(string[] args)

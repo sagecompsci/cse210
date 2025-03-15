@@ -1,10 +1,10 @@
 ﻿public class Menu
 {
     public List<string> _options = new List<string>();
-    int _answer;
-
+    
     public void Display(Journal journal, Prompts prompts)
     {
+        int answer;
         do
         {
             int count = 0;
@@ -15,26 +15,33 @@
             }
 
             Console.Write("What would you like to do? ");
-            _answer = int.Parse(Console.ReadLine());
+            answer = int.Parse(Console.ReadLine());
             Console.WriteLine("");
 
-            if (_answer == 1)
+            if (answer == 1)
             {
-                 journal.Write_Entry(prompts.Get());
+                 journal.WriteEntry(prompts.Get());
             }
 
-            if (_answer == 2)
+            if (answer == 2)
             {
-                journal.Display(journal);
+                journal.Display();
             }
 
-            if (_answer == 3)
+            if (answer == 3)
             {
                Console.Write("What file name do you want to save it to? ");
                string file = Console.ReadLine();
                journal.Save(file);
             }
-        } while (_answer != 5);
+
+            if (answer == 4)
+            {
+                Console.Write("What file name do you want to load? ");
+                string file = Console.ReadLine();
+                journal.Load(file);
+            }
+        } while (answer != 5);
     }
 
 }

@@ -8,23 +8,29 @@ public class Journal
 {
     public List<Entry> _journal;
 
-    public void Write_Entry(string prompt)
+    public void WriteEntry(string prompt)
     {
         Entry entry = new Entry();
         
         DateTime currentDateTime = DateTime.Now;
         entry._date = currentDateTime.ToShortDateString();
+        
+        Console.Write("Name: ");
+        entry._name = Console.ReadLine();
 
         entry._prompt = prompt;
         Console.WriteLine($"Prompt: {entry._prompt}");
         Console.Write("");
         entry._entry = Console.ReadLine();
+        
+        Console.Write("I am grateful for...  ");
+        entry._gratitude = $"I am grateful for {Console.ReadLine()}";
         Console.WriteLine("");
         
         this._journal.Add(entry);
     }
     
-    public void Display(Journal journal)
+    public void Display()
     {
         foreach (Entry item in this._journal)
         {
@@ -34,25 +40,30 @@ public class Journal
 
     public void Save(string file)
     {
-        string fileName = file;
-        using (StreamWriter outputFile = new StreamWriter("journal.txt"))
+        using (StreamWriter outputFile = new StreamWriter(file))
         {
             foreach (Entry item in this._journal)
             {
-                Console.WriteLine("stupid");
-                outputFile.WriteLine($"{item._date}~{item._prompt}~{item._entry}");
-                outputFile.WriteLine("Hello");
+                outputFile.WriteLine($"{item._date}~{item._name}~{item._prompt}~{item._entry}~{item._gratitude}");
             }
         }
     }
 
     public void Load(string file)
     {
-        string fileName = file;
-        string[] lines = System.IO.File.ReadAllLines(fileName);
+        this._journal.Clear();
+        string[] lines = System.IO.File.ReadAllLines(file);
         foreach (string line in lines)
         {
-            Console.WriteLine(line);
+            string[] data = line.Split("~");
+            Console.WriteLine(data);
+            Entry entry = new Entry();
+            entry._date = data[0];
+            entry._name = data[1];
+            entry._prompt = data[2];
+            entry._entry = data[3];
+            entry._gratitude = data[4];
+            this._journal.Add(entry);
         }
     }
 }
