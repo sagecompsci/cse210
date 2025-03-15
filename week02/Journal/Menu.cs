@@ -3,7 +3,7 @@
     public List<string> _options = new List<string>();
     int _answer;
 
-    public void Run(string prompt)
+    public void Display(Journal journal, Prompts prompts)
     {
         do
         {
@@ -16,17 +16,23 @@
 
             Console.Write("What would you like to do? ");
             _answer = int.Parse(Console.ReadLine());
+            Console.WriteLine("");
 
-            Journal journal = new Journal();
             if (_answer == 1)
             {
-                
-                journal.Write_Entry(prompt, journal);
+                 journal.Write_Entry(prompts.Get());
             }
 
             if (_answer == 2)
             {
-                journal.Display();
+                journal.Display(journal);
+            }
+
+            if (_answer == 3)
+            {
+               Console.Write("What file name do you want to save it to? ");
+               string file = Console.ReadLine();
+               journal.Save(file);
             }
         } while (_answer != 5);
     }

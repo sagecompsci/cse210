@@ -6,7 +6,8 @@
 
     public void Display()
     {
-        Console.WriteLine($"{_date}, {_prompt}");
-        Console.WriteLine($"{_entry}");
+        Console.WriteLine($"{this._date} {this._prompt}");
+        Console.WriteLine($"{this._entry}");
+        Console.WriteLine("");
     }
 }

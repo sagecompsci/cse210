@@ -8,6 +8,9 @@ class Program
         Menu menu = new Menu();
         menu._options = new List<string>
             { "Write New Entry", "Display Entries", "Save Journal", "Load Journal", "Exit" };
+        
+        Journal journal = new Journal();
+        journal._journal = new List<Entry>();
 
         Prompts prompts = new Prompts();
         prompts._lists = new List<string>
@@ -23,7 +26,7 @@ class Program
             "What did someone else do for you today?"
         };
         
-        menu.Run(prompts.Get());
+        menu.Display(journal, prompts);
     }
     
 }

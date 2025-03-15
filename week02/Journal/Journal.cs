@@ -1,9 +1,14 @@
 ﻿using System.IO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 public class Journal
 {
-    public List<Entry> _journal = new List<Entry>();
+    public List<Entry> _journal;
 
-    public void Write_Entry(string prompt, Journal journal)
+    public void Write_Entry(string prompt)
     {
         Entry entry = new Entry();
         
@@ -11,29 +16,32 @@ public class Journal
         entry._date = currentDateTime.ToShortDateString();
 
         entry._prompt = prompt;
-
-        Console.WriteLine();
+        Console.WriteLine($"Prompt: {entry._prompt}");
+        Console.Write("");
         entry._entry = Console.ReadLine();
+        Console.WriteLine("");
         
-        journal._journal.Add(entry);
+        this._journal.Add(entry);
     }
     
-    public void Display()
+    public void Display(Journal journal)
     {
-        foreach (Entry i in _journal)
+        foreach (Entry item in this._journal)
         {
-            Console.WriteLine(i);
+            item.Display();
         }
     }
 
     public void Save(string file)
     {
         string fileName = file;
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        using (StreamWriter outputFile = new StreamWriter("journal.txt"))
         {
-            foreach (Entry i in _journal)
+            foreach (Entry item in this._journal)
             {
-                outputFile.WriteLine(i);
+                Console.WriteLine("stupid");
+                outputFile.WriteLine($"{item._date}~{item._prompt}~{item._entry}");
+                outputFile.WriteLine("Hello");
             }
         }
     }
