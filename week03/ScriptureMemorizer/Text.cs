@@ -5,9 +5,13 @@ public class Text
     private List<string> _text;
     private List<Reference> _reference;
     private int _index;
+    
+
 
     public Text(string file)
     {
+        _reference = new List<Reference>();
+        _text = new List<string>();
         string[] lines = System.IO.File.ReadAllLines(file);
         foreach (string line in lines)
         {
@@ -19,8 +23,6 @@ public class Text
             string verse = data[4];
 
             Reference reference = new Reference(book, chapter, startVerse, endVerse);
-            _reference = new List<Reference>();
-            _text = new List<string>();
             _reference.Add(reference);
             _text.Add(verse);
 
