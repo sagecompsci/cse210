@@ -1,0 +1,25 @@
+﻿class Order
+customer: Customer
+products: list<products>
+
+method CalculatePrice: return float
+method PackingLabel: return string
+method ShippingLabel: return string
+method DisplayOrder: return string
+
+
+
+class Customer
+name: string
+address: Address
+
+
+
+class Address
+street: string
+city: string
+state: string
+country: string
+
+method LiveInUS: bool
+method FullAddress: string

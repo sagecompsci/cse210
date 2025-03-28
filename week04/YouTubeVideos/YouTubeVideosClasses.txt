@@ -1,0 +1,15 @@
+﻿class Video
+title: string
+author: string
+length: int
+comment: list<Comment>
+
+method NumberOfComments: return int
+method DisplayVideoInformation: return string
+
+
+class Comment
+name: string
+text: string
+
+method DisplayComment: return string
